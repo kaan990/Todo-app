@@ -10,10 +10,12 @@ import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Add
 import androidx.compose.material.icons.filled.Close
+import androidx.compose.material.icons.filled.Delete
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
@@ -54,13 +56,17 @@ fun secondscren(nameuser:String) {
                 .fillMaxWidth(0.9f),
                 elevation = 8.dp,
                 shape = RoundedCornerShape(15.dp),
-
-
+//                Onclick the surface we can also add card
             ) {
                 Column(modifier = Modifier.padding(start = 15.dp, top = 5.dp, end = 5.dp, bottom = 5.dp)) {
 
                     Text(text = "${notedata.get(i)}", modifier = Modifier.padding(5.dp), fontSize = 20.sp, fontWeight = FontWeight.Bold)
                     Text(text = "${desdata.get(i)}", modifier = Modifier.padding(5.dp), fontFamily = FontFamily.Monospace, fontSize = 12.sp)
+
+                    Icon(imageVector = Icons.Default.Delete,
+                        contentDescription = "Remove",
+                        modifier = Modifier.size(25.dp)
+                            .clickable { print("note remove")  })
                 }
                 }
             }
@@ -94,6 +100,7 @@ fun secondscren(nameuser:String) {
 
         if (iconcliker == true) {
 
+
             Box(
                 modifier = Modifier
                     .fillMaxSize()
@@ -117,12 +124,23 @@ fun secondscren(nameuser:String) {
                         },
                         label = { Text("Task description") }
                     )
-
+                    var warning = false
                     Button(onClick = {
-                        addData(Headtag, Destag)
-                        iconcliker = false
+                        if(Headtag.isNotEmpty() && Destag.isNotEmpty()) {
+                            warning = false
+                            addData(Headtag, Destag)
+                            iconcliker = false
+                        }else{
+                            warning = true
+                            println("red button display")
+                        }
                     }) {
-                        Text("Enter your Task")
+                        Column {
+                            Text("Enter your Task")
+                            if (warning !=false) {
+                                Text("Enter Fill Both Input section", modifier = Modifier, color = Color.Red)
+                            }
+                        }
                     }
                 }
             }
