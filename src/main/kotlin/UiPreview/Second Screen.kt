@@ -2,13 +2,11 @@ package UiPreview
 
 import androidx.compose.desktop.ui.tooling.preview.Preview
 import androidx.compose.foundation.border
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material.Icon
-import androidx.compose.material.MaterialTheme
-import androidx.compose.material.Surface
-import androidx.compose.material.Text
+import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Add
 import androidx.compose.runtime.*
@@ -29,6 +27,8 @@ fun secondscren(nameuser:String) {
 
     var  heading by remember { mutableStateOf("") }
     var  description by remember { mutableStateOf("") }
+    var nameuser by remember { mutableStateOf(nameuser) }
+
 
     Box() {
         Column {
@@ -43,23 +43,62 @@ fun secondscren(nameuser:String) {
                 .padding(2.dp))
 
 //            Calling Adding function
-            taskadd{ todolist(headin,des ->
-                heading = head
-                description = des
-                ) }
+
 
         }
         Box(modifier = Modifier
             .fillMaxSize().padding(50.dp),
-            contentAlignment = Alignment.BottomEnd
+            contentAlignment = Alignment.BottomEnd,
         ){
            Icon(imageVector = Icons.Default.Add,
                contentDescription = "Adding task",
                modifier = Modifier.size(48.dp)
-                   .border(2.dp, color = Color.Black, shape = CircleShape))
+                   .border(2.dp, color = Color.Black, shape = CircleShape)
+                   .clickable {
+//                       Calling function to add my task into my ArrayList
+                       var getvalue = inputtask{function:("krishna")-> Unit}
+                   }
+               )
+
         }
     }
 }
+
+data class Taskadder(var head:String,var desc:String )
+
+@Composable
+fun inputtask(function: (username:String)->String{
+    var Headtag by remember { mutableStateOf("") }
+    var Destag by remember { mutableStateOf("") }
+    Box(modifier = Modifier
+        .fillMaxSize()
+    ){
+        Text("Enter your Task Heading")
+        TextField(
+            value = Headtag,
+            onValueChange = {
+                Headtag = it
+            },
+            label = { Text("Task heading") }
+        )
+        Text("Enter your task description")
+        TextField(
+            value = Destag,
+            onValueChange = {
+                Destag = it
+            },
+            label = { Text("Task description") }
+        )
+
+        Button(onClick = {
+            secondscren("sai")
+        }){
+            Text("Enter your Task")
+        }
+    }
+}
+
+
 //    Box(modifier = Modifier.padding(5.dp)
 //        .fillMaxSize()
 //    ){
