@@ -1,4 +1,7 @@
 import UiPreview.firstscreen
+//import UiPreview.inputtask
+import UiPreview.learner
+//import UiPreview.learnerlam
 import UiPreview.secondscren
 import androidx.compose.desktop.ui.tooling.preview.Preview
 import androidx.compose.runtime.Composable
@@ -12,16 +15,17 @@ import androidx.compose.ui.window.application
 @Composable
 @Preview()
 fun App() {
-//    var nameuser by remember { mutableStateOf("") }
-//if (nameuser.isEmpty()){
-//    firstscreen{name ->
-//        nameuser = name
-//    }
-//}
-//    else{
-//        secondscren(nameuser)
-//    }
-    secondscren("krishna")
+    var nameuser by remember { mutableStateOf("") }
+if (nameuser.isEmpty()){
+    firstscreen{name ->
+        nameuser = name
+    }
+}
+    else{
+           secondscren(nameuser)
+    }
+
+
 }
 
 

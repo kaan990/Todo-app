@@ -15,7 +15,7 @@ import androidx.compose.ui.unit.dp
 
 @Composable
 fun firstscreen(function:(String)-> Unit){
-    var name by remember { mutableStateOf("Text") }
+    var name by remember { mutableStateOf("") }
     Box(modifier = Modifier
         .fillMaxSize()
         .background(Brush.radialGradient(colors = listOf(Color.Green, Color.LightGray))),

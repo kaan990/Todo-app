@@ -10,14 +10,5 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 
 fun todolist(){
-    Column (modifier = Modifier.padding(2.dp)
-        .fillMaxWidth()
-        .height(4.dp)
-    ) {
 
-
-        Button(onClick = ()->{}){
-
-    }
-    }
 }
