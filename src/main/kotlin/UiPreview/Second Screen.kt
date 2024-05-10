@@ -21,11 +21,12 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavController
 
 
 @Composable
-fun secondscren(nameuser:String) {
-
+//fun secondscren(nameuser:String) {
+fun secondscren(nameuser:String){
     var iconcliker by remember { mutableStateOf(false) }
     var Headtag by remember { mutableStateOf("") }
     var Destag by remember { mutableStateOf("") }

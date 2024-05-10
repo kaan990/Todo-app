@@ -12,9 +12,13 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
+import androidx.navigation.NavController
 
 @Composable
-fun firstscreen(function:(String)-> Unit){
+//fun firstscreen(function:(String)-> Unit){
+fun firstscreen(onclick:(name:String)-> Unit){
+
+//    var usename = "krishna"
     var name by remember { mutableStateOf("") }
     Box(modifier = Modifier
         .fillMaxSize()
@@ -35,7 +39,14 @@ fun firstscreen(function:(String)-> Unit){
                 modifier = Modifier.padding(10.dp)
             )
 
-            Button(onClick = {if (name.isNotEmpty()) function.invoke(name) } ){
+            Button(onClick = {
+//                if (name.isNotEmpty()) usename
+                if (name.isNotEmpty()) {
+                    onclick(name)
+//                    onclick.invoke(name)
+                }
+//            navcontroller.navigate(route = "Second")
+            } ){
                 Text("Create your Todo app")
             }
 
